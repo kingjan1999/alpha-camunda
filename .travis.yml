@@ -1,6 +1,6 @@
 language: java
 jdk:
-  - oopenjdk11
+  - openjdk11
 
 cache:
   directories:

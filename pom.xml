@@ -6,7 +6,7 @@
 
     <groupId>me.kingjan1999.fhdw</groupId>
     <artifactId>alphacamunda</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/kingjan1999/alpha-camunda</url>
@@ -116,26 +116,22 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
+                            <phase>deploy</phase>
+                            <goals><goal>jar-no-fork</goal></goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <phase>deploy</phase>
+                            <goals><goal>jar</goal></goals>
                         </execution>
                     </executions>
                 </plugin>

@@ -17,7 +17,7 @@ public class Parser {
     private Parser() {}
 
     /**
-     * Parses the given inputstream containing xml to an activity log
+     * Parses the given inputstream containing XML to an activity log
      *
      * @param xmlStream Stream containing valid XML data
      * @return The parsed log

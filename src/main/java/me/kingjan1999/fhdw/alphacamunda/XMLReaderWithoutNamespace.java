@@ -6,7 +6,7 @@ import javax.xml.stream.util.StreamReaderDelegate;
 /**
  * Utility XMLReader ignoring namespaces
  */
-public class XMLReaderWithoutNamespace extends StreamReaderDelegate {
+class XMLReaderWithoutNamespace extends StreamReaderDelegate {
     public XMLReaderWithoutNamespace(XMLStreamReader reader) {
         super(reader);
     }

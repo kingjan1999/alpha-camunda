@@ -36,6 +36,12 @@ public class BPMNCreator {
     private static final String ALPHA_NAME = "alpha";
     private static final String EPSILON_NAME = "epsilon";
 
+    /**
+     * Creates a new layouted bpmn model based on the results
+     * of the passed {@link RelationBuilder}.
+     * @param algorithm
+     * @return
+     */
     public static BpmnModelInstance createAndLayout(RelationBuilder algorithm) {
         var creator = new BPMNCreator();
         var modelInstance = creator.create(
@@ -53,6 +59,16 @@ public class BPMNCreator {
         return layoutedInstance;
     }
 
+    /**
+     * Creates a new bpmn model based on the passed results
+     * of the alpha algorithm so far
+     * @param act
+     * @param alternatives
+     * @param abstractions
+     * @param causalities
+     * @param noSuccession
+     * @return
+     */
     public BpmnModelInstance create(List<Activity> act,
                                     List<Triple<Activity, Activity, Activity>> alternatives,
                                     List<Triple<Activity, Activity, Activity>> abstractions,
@@ -479,8 +495,7 @@ public class BPMNCreator {
     }
 
     private static BpmnModelInstance doLayout(BpmnModelInstance modelInstance) {
-        Layouter layouter = new FluentLayouter(modelInstance);
-        return layouter.layout();
+        return new FluentLayouter().layout(modelInstance);
     }
 }
 

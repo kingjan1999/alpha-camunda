@@ -1,8 +1,8 @@
 package me.kingjan1999.fhdw.alphacamunda;
 
 import me.kingjan1999.fhdw.alphacamunda.domain.Activity;
-import me.kingjan1999.fhdw.alphacamunda.domain.Trace;
 import me.kingjan1999.fhdw.alphacamunda.domain.Log;
+import me.kingjan1999.fhdw.alphacamunda.domain.Trace;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
@@ -29,6 +29,8 @@ public class RelationBuilder {
     private Log log;
     private Set<Activity> activityList;
 
+    private boolean evaluated = false;
+
     public RelationBuilder() {
         this.causality = new HashSet<>();
         this.notSuccession = new HashSet<>();
@@ -39,6 +41,12 @@ public class RelationBuilder {
         this.remainingCausalities = new HashSet<>();
     }
 
+    /**
+     * Evaluates the given log and fills the fields of this
+     * instance with the extracted data.
+     *
+     * @param log Log to evaluate
+     */
     public void evaluate(Log log) {
         this.log = log;
         this.activityList = new HashSet<>();
@@ -58,34 +66,64 @@ public class RelationBuilder {
 
         fillRelations();
         fillQuantities();
+
+        this.evaluated = true;
     }
 
+    /**
+     * @return List of tuples of activities with a causality between them
+     * @throws IllegalStateException if the method is called before {@link RelationBuilder#evaluate(Log)}
+     */
     public List<Pair<Activity, Activity>> getCausality() {
+        assertEvaluated();
         return new ArrayList<>(causality);
     }
 
+    /**
+     * @return List of tuples of activities with no causality between them
+     * @throws IllegalStateException if the method is called before {@link RelationBuilder#evaluate(Log)}
+     */
     public List<Pair<Activity, Activity>> getNotSuccession() {
         return new ArrayList<>(notSuccession);
 
     }
 
+    /**
+     * @return List of tuples of activities where  each activitiy occured before the other and vice-versa
+     * @throws IllegalStateException if the method is called before {@link RelationBuilder#evaluate(Log)}
+     */
     public List<Pair<Activity, Activity>> getParallel() {
         return new ArrayList<>(parallel);
     }
 
+    /**
+     * @return Returns all pairs (a,b,c) where both b and c happened after a
+     * @throws IllegalStateException if the method is called before {@link RelationBuilder#evaluate(Log)}
+     */
     public List<Triple<Activity, Activity, Activity>> getAlternatives() {
         return new ArrayList<>(alternatives);
     }
 
+    /**
+     * @return Returns all pairs (a, b, c) where c happened after both a and b
+     * @throws IllegalStateException if the method is called before {@link RelationBuilder#evaluate(Log)}
+     */
     public List<Triple<Activity, Activity, Activity>> getAbstractions() {
         return new ArrayList<>(abstractions);
 
     }
 
+    /**
+     * @return Results from {@link #getCausality()} minus those activites in {@link #getAbstractions()}
+     * and {@link #getAlternatives()}.
+     */
     public List<Pair<Activity, Activity>> getRemainingCausalities() {
         return new ArrayList<>(remainingCausalities);
     }
 
+    /**
+     * @return List of all activites
+     */
     public List<Activity> getActivityList() {
         return new ArrayList<>(activityList);
     }
@@ -194,5 +232,7 @@ public class RelationBuilder {
         return causality.stream().filter(x -> x.equals(pair)).collect(Collectors.toList());
     }
 
-
+    private void assertEvaluated() {
+        if (!evaluated) throw new IllegalStateException("Must call #evaluate first!");
+    }
 }

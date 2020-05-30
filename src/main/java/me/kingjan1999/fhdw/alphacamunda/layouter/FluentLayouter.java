@@ -20,18 +20,15 @@ import java.util.stream.Collectors;
  */
 @SuppressWarnings("rawtypes") // Camunda API is "broken"
 public class FluentLayouter implements Layouter {
-    private final Process process;
 
     private static final Logger logger = LoggerFactory.getLogger(FluentLayouter.class);
     private Set<FlowNode> done;
     private List<FlowNode> canBeDone;
 
-    public FluentLayouter(BpmnModelInstance modelInstance) {
-        process = modelInstance.getModelElementsByType(Process.class).iterator().next();
-    }
-
     @Override
-    public BpmnModelInstance layout() {
+    public BpmnModelInstance layout(BpmnModelInstance modelInstance) {
+        Process process = modelInstance.getModelElementsByType(Process.class).iterator().next();
+
         ProcessBuilder processBuilder = Bpmn.createExecutableProcess();
         var startEvent = process.getModelInstance().getModelElementsByType(StartEvent.class).iterator().next();
         var allElements = process.getModelInstance().getModelElementsByType(FlowNode.class);

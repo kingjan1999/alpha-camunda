@@ -39,8 +39,8 @@ public class BPMNCreator {
     /**
      * Creates a new layouted bpmn model based on the results
      * of the passed {@link RelationBuilder}.
-     * @param algorithm
-     * @return
+     * @param algorithm Filled RelationBuilder
+     * @return Layouted generated BpmnModelInstance
      */
     public static BpmnModelInstance createAndLayout(RelationBuilder algorithm) {
         var creator = new BPMNCreator();
@@ -62,12 +62,12 @@ public class BPMNCreator {
     /**
      * Creates a new bpmn model based on the passed results
      * of the alpha algorithm so far
-     * @param act
-     * @param alternatives
-     * @param abstractions
-     * @param causalities
-     * @param noSuccession
-     * @return
+     * @param act Act Relation
+     * @param alternatives Alternatives Relation
+     * @param abstractions Abstractions Relation
+     * @param causalities Causalities Relation
+     * @param noSuccession NoSuccession Relation
+     * @return Generated BpmnModelInstance, without layout
      */
     public BpmnModelInstance create(List<Activity> act,
                                     List<Triple<Activity, Activity, Activity>> alternatives,

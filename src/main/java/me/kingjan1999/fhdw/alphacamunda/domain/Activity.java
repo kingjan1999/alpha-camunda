@@ -57,8 +57,8 @@ public class Activity {
     /**
      * Attention: equals() is not transitive when the placeholder is compared!
      * a = Placeholder \land b = PLaceholder, does not imply  a = b!
-     * @param o
-     * @return
+     * @param o Object to compare to
+     * @return true if objects are equal or one of the compared objects is the placeholder; false otherwise
      */
     @Override
     public boolean equals(Object o) {

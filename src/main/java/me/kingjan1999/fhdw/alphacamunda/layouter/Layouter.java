@@ -14,6 +14,7 @@ public interface Layouter {
     /**
      * Creates a diagramm layout for the given modelInstance
      * Note: A new modelInstance is created and the old remains untouched.
+     * @param modelInstance ModelInstance to layout
      * @return Layouted modelInstance
      */
     BpmnModelInstance layout(BpmnModelInstance modelInstance);

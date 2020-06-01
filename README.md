@@ -1,11 +1,20 @@
 # Alpha Algorithm for Camunda
-[ ![Download](https://api.bintray.com/packages/kingjan1999/alpha-algorithm-camunda/alpha-camunda/images/download.svg) ](https://bintray.com/kingjan1999/alpha-algorithm-camunda/alpha-camunda/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/me.kingjan1999.fhdw/alphacamunda/badge.svg)](https://search.maven.org/artifact/me.kingjan1999.fhdw/alphacamunda)
+[![Build Status](https://travis-ci.org/kingjan1999/alpha-camunda.svg?branch=master)](https://travis-ci.org/kingjan1999/alpha-camunda)
 
 This library allows you to parse an eventlog (as XES file) and generate a Camunda compatible  BPMN model from it using the alph algorithm.
 
 ## Get
 
-The library is available on [Bintray](https://bintray.com/kingjan1999/alpha-algorithm-camunda/alpha-camunda) and can be used with Maven and Gradle.
+The library is available on [Maven Central](https://search.maven.org/artifact/me.kingjan1999.fhdw/alphacamunda) and JCenter and can be used with Maven and Gradle.
+```xml
+<dependency>
+  <groupId>me.kingjan1999.fhdw</groupId>
+  <artifactId>alphacamunda</artifactId>
+  <version>1.0.4</version>
+</dependency>
+```
+
 Alternatively, you can download the latest version on the releases page.
 
 ## Usage Example

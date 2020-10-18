@@ -2,7 +2,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/me.kingjan1999.fhdw/alphacamunda/badge.svg)](https://search.maven.org/artifact/me.kingjan1999.fhdw/alphacamunda)
 [![Build Status](https://travis-ci.org/kingjan1999/alpha-camunda.svg?branch=master)](https://travis-ci.org/kingjan1999/alpha-camunda)
 
-This library allows you to parse an eventlog (as XES file) and generate a Camunda compatible  BPMN model from it using the alph algorithm.
+This library allows you to parse an eventlog (as XES file) and generate a Camunda compatible  BPMN model from it using the alpha algorithm.
 
 ## Get
 
